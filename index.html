@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divya Shivaram - Builder, Dreamer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'magazine': {
+                            'peach-pink': '#E5B4A5', // Main background from image
+                            'coral': '#E87A5E',       // Main text color from image
+                            'cream': '#F5F1EB',
+                            'warm-brown': '#8E6A5B',
+                            'sage': '#A0B4A6'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #E5B4A5;
+            /* Peach Pink Fallback */
+        }
+
+        .magazine-layout {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            overflow: hidden;
+        }
+
+        /* Paper-like texture overlay */
+        .magazine-layout::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgMzAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC45IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIi8+PC9zdmc+');
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 650px;
+            aspect-ratio: 1 / 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .image-placeholder {
+            width: 45%;
+            height: 45%;
+            z-index: 5;
+            background-color: #F5F1EB;
+            position: relative;
+            /* Cream color for contrast */
+        }
+
+        .image-placeholder::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgMzAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC45IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIi8+PC9zdmc+');
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .text-overlay {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: clamp(4rem, 20vw, 10rem);
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .text-top {
+            top: 32%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            font-weight: 400;
+        }
+
+        .text-bottom {
+            bottom: 32%;
+            transform: translate(-50%, 50%);
+            z-index: 10;
+            font-weight: 400;
+        }
+
+        .text-side {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: clamp(0.7rem, 2.5vw, 1.1rem);
+            letter-spacing: 0.15em;
+            z-index: 2;
+            white-space: nowrap;
+        }
+
+        .text-center {
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Navigation Styles */
+        .nav-link {
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1.5px;
+        }
+
+        .nav-separator {
+            opacity: 0.7;
+            margin: 0 1.25rem;
+            font-weight: 300;
+        }
+    </style>
+</head>
+
+<body class="bg-magazine-peach-pink font-sans antialiased">
+    <main class="magazine-layout">
+        <div class="content-wrapper">
+            <!-- Text elements are placed first to establish layering context -->
+            <h1 class="text-overlay text-top text-magazine-coral">builder</h1>
+
+            <span class="text-side text-center text-magazine-coral">hi, i'm divya</span>
+
+            <!-- Central Image Placeholder -->
+            <div class="image-placeholder"></div>
+
+            <h1 class="text-overlay text-bottom text-transparent"
+                style="-webkit-text-stroke: 1px #E87A5E; text-stroke: 1px #E87A5E;">tinkerer</h1>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="flex flex-wrap items-center justify-center mt-12 text-sm md:text-base text-magazine-warm-brown">
+            <a href="https://divyashivaram.substack.com/" target="_blank" rel="noopener noreferrer"
+                class="nav-link hover:text-magazine-coral">Writing</a>
+            <span class="nav-separator">|</span>
+            <a href="work.html" class="nav-link hover:text-magazine-coral">Work</a>
+            <span class="nav-separator">|</span>
+            <a href="media.html" class="nav-link hover:text-magazine-coral">Media</a>
+            <span class="nav-separator">|</span>
+            <a href="digital-garden.html" class="nav-link hover:text-magazine-coral">Digital Garden</a>
+        </nav>
+    </main>
+</body>
+
+</html>
