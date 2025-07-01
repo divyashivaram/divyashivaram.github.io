@@ -58,57 +58,102 @@
             text-decoration: underline;
             text-underline-offset: 4px;
         }
+
+        .split-layout {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .image-section {
+            background-color: #F5F1EB;
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0;
+        }
+
+        .content-section {
+            background-color: #E5B4A5;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 4rem 0 6rem 0;
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            .split-layout {
+                grid-template-columns: 1fr;
+                grid-template-rows: 40vh 1fr;
+            }
+
+            .image-section {
+                padding: 3rem 0;
+            }
+
+            .content-section {
+                padding: 3rem 0 5rem 0;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-magazine-peach-pink font-sans antialiased">
 
-    <header class="text-center py-8">
+    <!-- Header with Name -->
+    <header class="absolute top-6 left-6 z-20">
         <a href="index.html"
             class="font-sans text-magazine-warm-brown tracking-widest uppercase text-sm font-semibold nav-link">
             Divya Sivaram
         </a>
     </header>
 
-    <main class="w-full px-4 py-8 flex items-center justify-center">
-        <!-- 
-          MAIN CONTAINER: Added `aspect-square` to make the whole box a square.
-          Added flex properties to center the content vertically and horizontally.
-        -->
-        <div class=" p-6 md:p-8 w-full max-w-xl aspect-square flex flex-col justify-center items-center">
+    <!-- Split Layout Main Content -->
+    <main class="split-layout">
+        <!-- Left Image Section -->
+        <div class="image-section">
+            <img src="https://live.staticflickr.com/7369/8717715973_c539c574a1_b.jpg" alt="Divya Shivaram"
+                class="w-full h-full object-cover">
+        </div>
 
-            <div class="text-center mb-6">
-                <h1 class="font-serif text-3xl md:text-4xl font-semibold text-magazine-coral mb-4">
-                    A Few of My Favorite Things
+        <!-- Right Content Section -->
+        <div class="content-section">
+            <!-- Top Right Caption -->
+            <div class="text-right px-6 md:px-12">
+                <h1
+                    class="font-sans text-magazine-warm-brown text-sm md:text-base tracking-[0.3em] uppercase font-semibold mb-2">
+                    About me
                 </h1>
-                <p class="text-base md:text-lg leading-relaxed max-w-md mx-auto text-magazine-warm-brown">
-                    Welcome to my corner of the internet.
-
-                </p>
-                <p class="text-base md:text-lg leading-relaxed max-w-md mx-auto text-magazine-warm-brown">
-
-                    I'm Divya - part builder, part dreamer and a full time curious
-                    human.
-                    I love tumbling down rabbit holes, a little chaos and 5 am epiphanies.
-
-                    My tools: code, chaos, spreadsheets, curiosity, and the occasional existential playlist.
-
-                </p>
-                <p class="text-base md:text-lg leading-relaxed max-w-md mx-auto text-magazine-warm-brown">
-
-                    I’m probably working on five things right now — two are startups, one is a strange Google Doc, and
-                    the
-                    last two are snacks. Welcome to the brain circus
-                </p>
             </div>
 
+            <!-- Bottom Right Text Content -->
+            <div class="text-left max-w-md px-6 md:px-12">
+                <p class="text-magazine-warm-brown text-base md:text-lg leading-relaxed mb-6">
+                    Welcome to my corner of the internet.
+                </p>
 
+                <p class="text-magazine-warm-brown text-base md:text-lg leading-relaxed mb-6">
+                    I'm Divya - part builder, part dreamer and a full time curious human.
+                    I love tumbling down rabbit holes, a little chaos and 5 am epiphanies.
+                </p>
 
+                <p class="text-magazine-warm-brown text-base md:text-lg leading-relaxed mb-6">
+                    My tools: code, chaos, spreadsheets, curiosity, and the occasional existential playlist.
+                </p>
+
+                <p class="text-magazine-warm-brown text-base md:text-lg leading-relaxed">
+                    I'm probably working on five things right now — two are startups, one is a strange Google Doc, and
+                    the
+                    last two are snacks. Welcome to the brain circus.
+                </p>
+            </div>
         </div>
     </main>
 
-    <footer class="text-center py-12">
-        <nav class="flex flex-wrap items-center justify-center text-sm space-x-3 text-magazine-warm-brown">
+    <!-- Footer Navigation -->
+    <footer class="absolute bottom-6 right-6 z-20">
+        <nav class="flex flex-wrap items-center justify-end text-sm space-x-3 text-magazine-warm-brown">
             <a href="index.html" class="nav-link">← Home</a>
             <span class="opacity-50">|</span>
             <a href="work.html" class="nav-link">Work</a>
