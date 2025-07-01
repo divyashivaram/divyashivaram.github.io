@@ -22,6 +22,7 @@
                             'coral': '#E87A5E',
                             'cream': '#F5F1EB',
                             'warm-brown': '#8E6A5B',
+                            'paper-light': '#FBF9F6',
                             'sage': '#A0B4A6'
                         }
                     },
@@ -33,55 +34,27 @@
             }
         }
     </script>
-
     <style>
-        body {
-            background-color: #E5B4A5;
-        }
-
-        .page-layout {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            overflow: hidden;
-        }
-
-        .page-layout::before {
+        body::before {
             content: "";
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgMzAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC45IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIi8+PC9zdmc+');
             opacity: 0.1;
             pointer-events: none;
-        }
-
-        .content-container {
-            position: relative;
-            z-index: 10;
-            max-width: 600px;
-            text-align: center;
-            background-color: rgba(245, 241, 235, 0.9);
-            padding: 3rem;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
+            z-index: -1;
         }
 
         .nav-link {
             transition: all 0.3s ease;
             font-weight: 500;
-            font-family: 'Inter', sans-serif;
-            color: #8E6A5B;
         }
 
         .nav-link:hover {
-            color: #E87A5E;
+            color: #E87A5E !important;
             text-decoration: underline;
             text-underline-offset: 4px;
         }
@@ -89,36 +62,83 @@
 </head>
 
 <body class="bg-magazine-peach-pink font-sans antialiased">
-    <main class="page-layout">
-        <div class="content-container">
-            <h1 class="font-serif text-4xl md:text-5xl font-semibold text-magazine-coral mb-6">
-                About me
-            </h1>
 
-            <p class="text-magazine-warm-brown text-lg md:text-xl leading-relaxed mb-8">
-                A deeper dive into who I am beyond the builder and tinkerer labels. The stories, experiences, and
-                perspectives that shape my work and curiosity.
-            </p>
+    <header class="text-center py-8">
+        <a href="index.html"
+            class="font-sans text-magazine-warm-brown tracking-widest uppercase text-sm font-semibold nav-link">
+            Divya Sivaram
+        </a>
+    </header>
 
-            <p class="text-magazine-warm-brown opacity-70 text-base mb-8">
-                Coming soon...
-            </p>
+    <main class="w-full px-4 py-8 flex items-center justify-center">
+        <!-- 
+          MAIN CONTAINER: Added `aspect-square` to make the whole box a square.
+          Added flex properties to center the content vertically and horizontally.
+        -->
+        <div class=" p-6 md:p-8 w-full max-w-xl aspect-square flex flex-col justify-center items-center">
 
-            <nav class="space-y-4">
-                <a href="index.html" class="nav-link block">← Back to Home</a>
-                <div class="flex flex-wrap items-center justify-center text-sm">
-                    <a href="https://divyashivaram.substack.com/" target="_blank" rel="noopener noreferrer"
-                        class="nav-link">Writing</a>
-                    <span class="mx-3 text-magazine-warm-brown opacity-50">|</span>
-                    <a href="work.html" class="nav-link">Work</a>
-                    <span class="mx-3 text-magazine-warm-brown opacity-50">|</span>
-                    <a href="media.html" class="nav-link">Media</a>
-                    <span class="mx-3 text-magazine-warm-brown opacity-50">|</span>
-                    <a href="digital-garden.html" class="nav-link">Digital Garden</a>
-                </div>
-            </nav>
+            <div class="text-center mb-6">
+                <h1 class="font-serif text-3xl md:text-4xl font-semibold text-magazine-coral mb-4">
+                    A Few of My Favorite Things
+                </h1>
+                <p class="text-base md:text-lg leading-relaxed max-w-md mx-auto text-magazine-warm-brown">
+                    This is the space for your "about me" text. It can be a brief introduction, a mission statement, or
+                    a collection of ideas that inspire you.
+                </p>
+            </div>
+
+            <!-- IMAGE GRID: The parent container is now a square -->
+            <div class="grid grid-cols-3 gap-2 w-full">
+                <!-- Each grid cell now has `aspect-square` to guarantee it is a square -->
+                <div class="bg-magazine-paper-light aspect-square"><img
+                        src="https://i.pinimg.com/736x/5c/39/f2/5c39f2d166a7022d98101d3a9155b30b.jpg"
+                        alt="milk and honey book" class="w-full h-full object-cover"></div>
+                <div class="bg-magazine-paper-light aspect-square"><img
+                        src="https://live.staticflickr.com/65535/50863629067_a262d62a52_w.jpg" alt="Tea cup on a saucer"
+                        class="w-full h-full object-cover"></div>
+                <div class="bg-magazine-paper-light aspect-square"><img
+                        src="https://live.staticflickr.com/8265/8839823616_6950749668_b.jpg"
+                        alt="Wildflowers in a field" class="w-full h-full object-cover"></div>
+
+                <div class="bg-magazine-paper-light aspect-square"><img
+                        src="https://live.staticflickr.com/7369/8717715973_c539c574a1_b.jpg"
+                        alt="Hands holding a journal" class="w-full h-full object-cover"></div>
+                <div class="bg-magazine-paper-light aspect-square"><img
+                        src="https://live.staticflickr.com/4184/34123647350_35efb8631e_b.jpg" alt="Architectural detail"
+                        class="w-full h-full object-cover"></div>
+                <div class="bg-magazine-paper-light aspect-square"><img
+                        src="https://live.staticflickr.com/5614/15368793087_9287743070_b.jpg" alt="Row of library books"
+                        class="w-full h-full object-cover"></div>
+
+                <div class="bg-magazine-paper-light aspect-square"><img
+                        src="https://live.staticflickr.com/7808/32608652767_4c073c5034_z.jpg"
+                        alt="Cozy kitchen interior" class="w-full h-full object-cover"></div>
+                <div class="bg-magazine-paper-light aspect-square"><img
+                        src="https://live.staticflickr.com/4182/34123660090_3a38b627be_z.jpg"
+                        alt="Person in a coat holding pinecones" class="w-full h-full object-cover"></div>
+                <div class="bg-magazine-paper-light aspect-square"><img
+                        src="https://live.staticflickr.com/8322/8066278636_c78c3c2527_b.jpg" alt="Candles on a table"
+                        class="w-full h-full object-cover"></div>
+            </div>
+
         </div>
     </main>
+
+    <footer class="text-center py-12">
+        <nav class="flex flex-wrap items-center justify-center text-sm space-x-3 text-magazine-warm-brown">
+            <a href="index.html" class="nav-link">← Home</a>
+            <span class="opacity-50">|</span>
+            <a href="https://divyashivaram.substack.com/" target="_blank" rel="noopener noreferrer"
+                class="nav-link">Writing</a>
+            <span class="opacity-50">|</span>
+            <a href="work.html" class="nav-link">Work</a>
+            <span class="opacity-50">|</span>
+            <a href="media.html" class="nav-link">Media</a>
+            <span class="opacity-50">|</span>
+            <a href="digital-garden.html" class="nav-link">Digital Garden</a>
+        </nav>
+    </footer>
+
 </body>
 
 </html>
