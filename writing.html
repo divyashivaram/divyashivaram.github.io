@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
 
     <script>
@@ -60,105 +60,88 @@
             text-underline-offset: 4px;
         }
 
-        .post-card {
-            background-color: rgba(245, 241, 235, 0.9);
-            border-radius: 8px;
-            padding: 1.5rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+        .post-row {
+            border-top: 1px solid rgba(142, 106, 91, 0.25);
+            padding: 1.75rem 0;
         }
 
-        .post-card:hover {
-            background-color: rgba(245, 241, 235, 1);
-            transform: translateY(-2px);
+        .post-row:last-of-type {
+            border-bottom: 1px solid rgba(142, 106, 91, 0.25);
         }
 
-        .custom-post-preview {
-            transition: all 0.3s ease;
+        .post-title-link {
+            color: #8E6A5B;
+            transition: color 0.2s ease;
         }
 
-        .custom-post-preview:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        .post-title-link:hover {
+            color: #E87A5E;
+        }
+
+        @keyframes pulse-fade {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        .loading-shimmer {
+            animation: pulse-fade 1.5s ease-in-out infinite;
         }
     </style>
 </head>
 
 <body class="bg-magazine-peach-pink font-sans antialiased">
 
-    <!-- Header with Name -->
+    <!-- Header -->
     <header class="text-center pt-8 pb-4">
         <a href="index.html"
-            class="font-sans text-magazine-warm-brown tracking-widest uppercase text-sm font-semibold nav-link">
+            class="font-sans text-magazine-warm-brown tracking-widest uppercase text-base font-semibold nav-link">
             Divya Sivaram
         </a>
     </header>
 
     <!-- Main Content -->
-    <main class="w-full px-4 pt-2 pb-8">
+    <main class="max-w-2xl mx-auto px-6 pt-16 pb-24">
 
-        <!-- Page Title and Introduction -->
-        <section class="flex items-center justify-center mb-12">
-            <div class="max-w-4xl text-center">
-                <h1 class="font-serif text-4xl md:text-5xl font-semibold text-magazine-coral mb-6">
-                    Writing
-                </h1>
-                <p class="text-magazine-warm-brown text-lg md:text-xl leading-relaxed mb-8">
-                    My thouhgts, Weekly notes and reflections.
-                </p>
+        <!-- Page Title -->
+        <div class="mb-16">
+            <h1 class="font-serif text-6xl md:text-7xl mb-4 leading-tight" style="color: #E87A5E;">
+                writing.
+            </h1>
+            <p class="text-magazine-warm-brown text-lg leading-relaxed" style="opacity: 0.75;">
+                My thoughts, weekly notes and reflections.
+            </p>
+        </div>
 
+        <!-- Post List — populated by JS -->
+        <div id="post-list">
+            <!-- Loading state -->
+            <div class="post-row loading-shimmer">
+                <div class="h-4 bg-magazine-warm-brown rounded w-2/3 mb-2" style="opacity: 0.2;"></div>
+                <div class="h-3 bg-magazine-warm-brown rounded w-full" style="opacity: 0.15;"></div>
             </div>
-        </section>
-
-        <!-- Posts Gallery -->
-        <section class="flex items-center justify-center">
-            <div class="w-full max-w-4xl">
-
-                <!-- Posts Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-
-                    <!-- Featured Post - Latest -->
-                    <div class="md:col-span-2 post-card">
-                        <div class="mb-4">
-                            <span class="text-magazine-coral text-sm font-medium uppercase tracking-wide">Latest
-                                Post</span>
-                        </div>
-                        <div class="custom-post-preview bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-                            <h3 class="font-serif text-xl font-semibold text-magazine-coral mb-3">Week notes - Still
-                                June?</h3>
-                            <p class="text-magazine-warm-brown text-base leading-relaxed mb-4">Great food and a kick-up
-                            </p>
-                            <div class="flex items-center justify-between pt-4 border-t border-gray-100">
-                                <span class="text-sm text-magazine-warm-brown opacity-70">by Divya Shivaram</span>
-                                <a href="https://divyashivaram.substack.com/p/week-notes-still-june" target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="inline-flex items-center text-magazine-coral hover:text-magazine-warm-brown font-medium transition-colors nav-link">
-                                    Read on Substack →
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Link to Full Substack -->
-                    <div class="mb-12">
-                        <a href="https://divyashivaram.substack.com/" target="_blank" rel="noopener noreferrer"
-                            class="inline-block bg-magazine-coral text-white px-6 py-3 rounded-lg font-medium hover:bg-magazine-warm-brown transition-colors duration-300">
-                            View archive
-                        </a>
-                    </div>
-
-
-
-                </div>
-
+            <div class="post-row loading-shimmer" style="animation-delay: 0.15s;">
+                <div class="h-4 bg-magazine-warm-brown rounded w-1/2 mb-2" style="opacity: 0.2;"></div>
+                <div class="h-3 bg-magazine-warm-brown rounded w-5/6" style="opacity: 0.15;"></div>
             </div>
-        </section>
+            <div class="post-row loading-shimmer" style="animation-delay: 0.3s;">
+                <div class="h-4 bg-magazine-warm-brown rounded w-3/5 mb-2" style="opacity: 0.2;"></div>
+                <div class="h-3 bg-magazine-warm-brown rounded w-4/5" style="opacity: 0.15;"></div>
+            </div>
+        </div>
+
+        <!-- Archive Link -->
+        <div class="pt-12">
+            <a href="https://divyashivaram.substack.com/" target="_blank" rel="noopener noreferrer"
+                class="nav-link text-magazine-warm-brown text-base">
+                Full archive on Substack →
+            </a>
+        </div>
 
     </main>
 
     <!-- Footer Navigation -->
     <footer class="text-center py-12">
-        <nav class="flex flex-wrap items-center justify-center text-sm space-x-3 text-magazine-warm-brown">
+        <nav class="flex flex-wrap items-center justify-center text-base space-x-3 text-magazine-warm-brown">
             <a href="index.html" class="nav-link">← Home</a>
             <span class="opacity-50">|</span>
             <a href="about.html" class="nav-link">About me</a>
@@ -168,6 +151,87 @@
             <a href="digital-garden.html" class="nav-link">Digital Garden</a>
         </nav>
     </footer>
+
+    <script>
+        async function loadSubstackPosts() {
+            const container = document.getElementById('post-list');
+            const feedUrl = 'https://divyashivaram.substack.com/feed';
+            const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.status !== 'ok' || !data.items?.length) {
+                    throw new Error('No posts returned');
+                }
+
+                container.innerHTML = data.items.map(item => {
+                    const date = new Date(item.pubDate);
+                    const formattedDate = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+
+                    // Strip HTML tags from description to get plain excerpt
+                    const tmp = document.createElement('div');
+                    tmp.innerHTML = item.description || '';
+                    const rawText = (tmp.textContent || tmp.innerText || '').trim();
+                    const excerpt = rawText.length > 160 ? rawText.slice(0, 157) + '…' : rawText;
+
+                    return `
+                        <div class="post-row">
+                            <div class="flex items-start justify-between gap-6">
+                                <a href="${item.link}" target="_blank" rel="noopener noreferrer"
+                                   class="post-title-link font-sans text-lg font-medium leading-snug">
+                                    ${item.title}
+                                </a>
+                                <span class="text-sm text-magazine-warm-brown flex-shrink-0 mt-0.5 font-sans tracking-wide uppercase" style="opacity: 0.5;">${formattedDate}</span>
+                            </div>
+                            ${excerpt ? `<p class="text-magazine-warm-brown text-base leading-relaxed mt-2" style="opacity: 0.65;">${excerpt}</p>` : ''}
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (err) {
+                // Graceful fallback to most recent known post
+                container.innerHTML = `
+                    <div class="post-row">
+                        <div class="flex items-start justify-between gap-6">
+                            <a href="https://divyashivaram.substack.com/p/february-2026-week-notes-2-3-and"
+                               target="_blank" rel="noopener noreferrer"
+                               class="post-title-link font-sans text-lg font-medium leading-snug">
+                                February 2026 - Week notes 2, 3 and maybe 4?
+                            </a>
+                            <span class="text-sm text-magazine-warm-brown flex-shrink-0 mt-0.5 font-sans tracking-wide uppercase" style="opacity: 0.5;">Feb 2026</span>
+                        </div>
+                        <p class="text-magazine-warm-brown text-base leading-relaxed mt-2" style="opacity: 0.65;">swaying between light and dark - am i oreo?</p>
+                    </div>
+                    <div class="post-row">
+                        <div class="flex items-start justify-between gap-6">
+                            <a href="https://divyashivaram.substack.com/p/february-2026-week-note-1"
+                               target="_blank" rel="noopener noreferrer"
+                               class="post-title-link font-sans text-lg font-medium leading-snug">
+                                February 2026 - Week note 1
+                            </a>
+                            <span class="text-sm text-magazine-warm-brown flex-shrink-0 mt-0.5 font-sans tracking-wide uppercase" style="opacity: 0.5;">Feb 2026</span>
+                        </div>
+                        <p class="text-magazine-warm-brown text-base leading-relaxed mt-2" style="opacity: 0.65;">friends, work, celebration</p>
+                    </div>
+                    <div class="post-row">
+                        <div class="flex items-start justify-between gap-6">
+                            <a href="https://divyashivaram.substack.com/p/january-week-notes-3-and-4"
+                               target="_blank" rel="noopener noreferrer"
+                               class="post-title-link font-sans text-lg font-medium leading-snug">
+                                January - Week notes 3 & 4
+                            </a>
+                            <span class="text-sm text-magazine-warm-brown flex-shrink-0 mt-0.5 font-sans tracking-wide uppercase" style="opacity: 0.5;">Jan 2026</span>
+                        </div>
+                        <p class="text-magazine-warm-brown text-base leading-relaxed mt-2" style="opacity: 0.65;">writing block, linkin park, abhinay's birthday</p>
+                    </div>
+                `;
+            }
+        }
+
+        loadSubstackPosts();
+    </script>
 
 </body>
 
