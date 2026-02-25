@@ -143,6 +143,58 @@
                         to   { opacity: 1; transform: translateY(0); }
                 }
 
+                /* Writing post cards — same as writing.html */
+                .posts-grid {
+                        display: grid;
+                        grid-template-columns: repeat(3, 1fr);
+                        gap: 3px;
+                }
+
+                @media (max-width: 900px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+                @media (max-width: 560px) { .posts-grid { grid-template-columns: 1fr; } }
+
+                .post-block {
+                        display: flex;
+                        flex-direction: column;
+                        min-height: 260px;
+                        background: rgba(255, 250, 243, 0.57);
+                        padding: 1.25rem 1.5rem 1.5rem;
+                        border-radius: 12px;
+                        text-decoration: none;
+                        transition: background 0.2s ease;
+                }
+
+                .post-block:hover { background: rgba(255, 250, 243, 0.8); }
+
+                .post-block-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                }
+
+                .post-tag { font-size: 0.8rem; font-weight: 400; color: #4f3125; }
+
+                .post-arrow {
+                        color: #4f3125;
+                        opacity: 0.5;
+                        transition: opacity 0.2s ease;
+                        flex-shrink: 0;
+                }
+
+                .post-block:hover .post-arrow { opacity: 1; }
+
+                .post-block-content { margin-top: auto; padding-top: 2rem; }
+
+                .post-title { font-size: 1.3rem; font-weight: 500; line-height: 1.3; color: #5d4035; margin-bottom: 0.4rem; }
+                .post-date { font-size: 0.85rem; color: #4f3125; margin-bottom: 0.75rem; }
+                .post-excerpt { font-size: 0.95rem; color: #543e34; line-height: 1.65; }
+
+                @keyframes pulse-fade {
+                        0%, 100% { opacity: 0.5; }
+                        50% { opacity: 0.8; }
+                }
+                .loading-shimmer { animation: pulse-fade 1.5s ease-in-out infinite; }
+
                 .links-grid {
                         display: grid;
                         grid-template-columns: repeat(3, 1fr);
@@ -425,8 +477,16 @@
 
                 <!-- Writing Tab -->
                 <div class="tab-section" id="tab-writing">
-                        <div id="writing-grid" class="links-grid">
-                                <!-- populated by JS -->
+                        <div id="post-list" class="posts-grid">
+                                <div class="post-block loading-shimmer"><div class="post-block-header"><div class="h-3 bg-magazine-warm-brown rounded w-20" style="opacity:0.2"></div></div><div class="post-block-content"><div class="h-5 bg-magazine-warm-brown rounded w-4/5 mb-1" style="opacity:0.2"></div><div class="h-3 bg-magazine-warm-brown rounded w-24 mb-4" style="opacity:0.15"></div></div></div>
+                                <div class="post-block loading-shimmer" style="animation-delay:0.15s"><div class="post-block-header"><div class="h-3 bg-magazine-warm-brown rounded w-20" style="opacity:0.2"></div></div><div class="post-block-content"><div class="h-5 bg-magazine-warm-brown rounded w-full mb-1" style="opacity:0.2"></div><div class="h-3 bg-magazine-warm-brown rounded w-24 mb-4" style="opacity:0.15"></div></div></div>
+                                <div class="post-block loading-shimmer" style="animation-delay:0.3s"><div class="post-block-header"><div class="h-3 bg-magazine-warm-brown rounded w-20" style="opacity:0.2"></div></div><div class="post-block-content"><div class="h-5 bg-magazine-warm-brown rounded w-3/5 mb-1" style="opacity:0.2"></div><div class="h-3 bg-magazine-warm-brown rounded w-24 mb-4" style="opacity:0.15"></div></div></div>
+                        </div>
+                        <div class="pt-12">
+                                <a href="https://divyashivaram.substack.com/" target="_blank" rel="noopener noreferrer"
+                                        class="nav-link text-magazine-warm-brown text-base">
+                                        Full archive on Substack →
+                                </a>
                         </div>
                 </div>
 
@@ -480,45 +540,54 @@
                         }
                 }
 
+                function fixGridLayout(container) {
+                        const cards = container.querySelectorAll('.post-block');
+                        const count = cards.length;
+                        if (count % 3 === 1 && count > 1) {
+                                cards[cards.length - 1].style.gridColumn = 'span 2';
+                        }
+                }
+
                 async function loadWriting() {
-                        const grid = document.getElementById('writing-grid');
+                        const container = document.getElementById('post-list');
+                        const feedUrl = 'https://divyashivaram.substack.com/feed';
+                        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`;
 
-                        const fallback = [
-                                ['https://divyashivaram.substack.com/p/february-2026-week-notes-2-3-and', 'February 2026 - Week notes 2, 3 and maybe 4?', 'February 25, 2026', 'swaying between light and dark - am i oreo?', ['week notes', 'personal']],
-                                ['https://divyashivaram.substack.com/p/february-2026-week-note-1', 'February 2026 - Week note 1', 'February 9, 2026', 'friends, work, celebration', ['week notes', 'personal']],
-                                ['https://divyashivaram.substack.com/p/january-week-notes-3-and-4', 'January - Week notes 3 & 4', 'January 28, 2026', "writing block, linkin park, abhinay's birthday", ['week notes', 'personal']],
-                        ];
-
-                        function renderCard(url, title, date, excerpt, tags) {
-                                const tagsHtml = tags?.length ? tags.map(t => `<span class="link-tag">${t}</span>`).join('') : '';
+                        function renderCard(link, title, date, excerpt) {
                                 return `
-                                        <a href="${url}" target="_blank" rel="noopener noreferrer" class="link-card">
-                                                <div class="link-card-header">
-                                                        <span class="link-domain">substack.com</span>
-                                                        <svg class="link-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg>
+                                        <a href="${link}" target="_blank" rel="noopener noreferrer" class="post-block">
+                                                <div class="post-block-header">
+                                                        <span class="post-tag">Writing · Blog</span>
+                                                        <svg class="post-arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-82.34,82.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></svg>
                                                 </div>
-                                                <div class="link-card-content">
-                                                        <p class="link-title">${title}</p>
-                                                        ${excerpt ? `<p class="link-excerpt">${excerpt}</p>` : ''}
-                                                        ${tagsHtml ? `<div class="link-tags">${tagsHtml}</div>` : ''}
+                                                <div class="post-block-content">
+                                                        <p class="post-title">${title}</p>
+                                                        <p class="post-date">${date}</p>
+                                                        ${excerpt ? `<p class="post-excerpt">${excerpt}</p>` : ''}
                                                 </div>
                                         </a>`;
                         }
 
                         try {
-                                const rssUrl = encodeURIComponent('https://divyashivaram.substack.com/feed');
-                                const res = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}&count=9`);
-                                const data = await res.json();
+                                const response = await fetch(apiUrl);
+                                const data = await response.json();
                                 if (data.status !== 'ok' || !data.items?.length) throw new Error();
-                                grid.innerHTML = data.items.map(item => {
+                                container.innerHTML = data.items.map(item => {
                                         const date = new Date(item.pubDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
                                         const tmp = document.createElement('div');
                                         tmp.innerHTML = item.description || '';
-                                        const excerpt = (tmp.textContent || '').trim().slice(0, 160);
-                                        return renderCard(item.link, item.title, date, excerpt, ['week notes', 'personal']);
+                                        const rawText = (tmp.textContent || tmp.innerText || '').trim();
+                                        const excerpt = rawText.length > 180 ? rawText.slice(0, 177) + '…' : rawText;
+                                        return renderCard(item.link, item.title, date, excerpt);
                                 }).join('');
+                                fixGridLayout(container);
                         } catch {
-                                grid.innerHTML = fallback.map(([url, title, date, excerpt, tags]) => renderCard(url, title, date, excerpt, tags)).join('');
+                                container.innerHTML = [
+                                        ['https://divyashivaram.substack.com/p/february-2026-week-notes-2-3-and', 'February 2026 - Week notes 2, 3 and maybe 4?', 'February 25, 2026', 'swaying between light and dark - am i oreo?'],
+                                        ['https://divyashivaram.substack.com/p/february-2026-week-note-1', 'February 2026 - Week note 1', 'February 9, 2026', 'friends, work, celebration'],
+                                        ['https://divyashivaram.substack.com/p/january-week-notes-3-and-4', 'January - Week notes 3 & 4', 'January 28, 2026', "writing block, linkin park, abhinay's birthday"],
+                                ].map(([link, title, date, excerpt]) => renderCard(link, title, date, excerpt)).join('');
+                                fixGridLayout(container);
                         }
                 }
 
@@ -534,7 +603,7 @@
                         <span class="opacity-50">|</span>
                         <a href="work.html" class="nav-link">Work</a>
                         <span class="opacity-50">|</span>
-                        <a href="writing.html" class="nav-link">Writing</a>
+                        <a href="digital-garden.html" class="nav-link">Digital Garden</a>
                 </nav>
         </footer>
 
