@@ -53,6 +53,30 @@
             font-weight: 500;
         }
 
+        .name-wrap {
+            position: relative;
+            display: inline-block;
+        }
+
+        .name-icon {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            fill: #8E6A5B;
+            opacity: 0.45;
+            pointer-events: none;
+        }
+
+        .ni-1 { top: -16px; left: 2px;               animation: nameFloat 3.2s ease-in-out infinite; }
+        .ni-2 { top: -14px; right: 2px;              animation: nameFloat 4.0s ease-in-out infinite 0.9s; }
+        .ni-3 { bottom: -16px; left: calc(50% - 8px); animation: nameFloat 3.6s ease-in-out infinite 1.6s; }
+
+        @keyframes nameFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            40%       { transform: translateY(-6px) rotate(10deg); }
+            70%       { transform: translateY(-3px) rotate(-6deg); }
+        }
+
         .nav-link:hover {
             color: #E87A5E !important;
             text-decoration: underline;
@@ -103,10 +127,18 @@
 
     <!-- Header with Name -->
     <header class="absolute top-6 left-6 z-20">
-        <a href="index.html"
-            class="font-sans text-magazine-warm-brown tracking-widest uppercase text-sm font-semibold nav-link">
-            Divya Sivaram
-        </a>
+        <div class="name-wrap">
+            <!-- heart -->
+            <svg class="name-icon ni-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M178,40c-20.65,0-38.73,8.88-50,23.89C116.73,48.88,98.65,40,78,40a62.07,62.07,0,0,0-62,62c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,228.66,240,172,240,102A62.07,62.07,0,0,0,178,40ZM128,214.8C109.74,204.16,32,155.69,32,102A46.06,46.06,0,0,1,78,56c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,155.61,146.24,204.15,128,214.8Z"/></svg>
+            <!-- smiley -->
+            <svg class="name-icon ni-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216ZM80,108a12,12,0,1,1,12,12A12,12,0,0,1,80,108Zm96,0a12,12,0,1,1-12-12A12,12,0,0,1,176,108Zm-1.07,48c-10.29,17.79-27.4,28-46.93,28s-36.63-10.2-46.92-28a8,8,0,1,1,13.84-8c7.47,12.91,19.21,20,33.08,20s25.61-7.1,33.07-20a8,8,0,0,1,13.86,8Z"/></svg>
+            <!-- user -->
+            <svg class="name-icon ni-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg>
+            <a href="index.html"
+                class="font-sans text-magazine-warm-brown tracking-widest uppercase text-sm font-semibold nav-link">
+                Divya Sivaram
+            </a>
+        </div>
     </header>
 
     <!-- Split Layout Main Content -->
