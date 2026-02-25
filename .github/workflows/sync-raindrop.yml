@@ -1,0 +1,62 @@
+name: Sync Raindrop Links
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # every 6 hours
+  workflow_dispatch:         # manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch links from Raindrop
+        env:
+          RAINDROP_TOKEN: ${{ secrets.RAINDROP_TOKEN }}
+          RAINDROP_COLLECTION_ID: ${{ secrets.RAINDROP_COLLECTION_ID }}
+        run: |
+          python3 << 'EOF'
+          import json, os, urllib.request, datetime
+
+          token = os.environ['RAINDROP_TOKEN']
+          collection_id = os.environ['RAINDROP_COLLECTION_ID']
+
+          req = urllib.request.Request(
+              f'https://api.raindrop.io/rest/v1/raindrops/{collection_id}?perpage=50&sort=-created',
+              headers={'Authorization': f'Bearer {token}'}
+          )
+
+          with urllib.request.urlopen(req) as res:
+              data = json.loads(res.read())
+
+          links = [{
+              'title': item['title'],
+              'url': item['link'],
+              'excerpt': item.get('excerpt', ''),
+              'tags': item.get('tags', []),
+              'domain': item.get('domain', ''),
+              'date': item['created']
+          } for item in data['items']]
+
+          output = {
+              'updated': datetime.datetime.utcnow().isoformat() + 'Z',
+              'links': links
+          }
+
+          with open('links.json', 'w') as f:
+              json.dump(output, f, indent=2)
+
+          print(f"Wrote {len(links)} links")
+          EOF
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add links.json
+          git diff --staged --quiet || git commit -m "sync: update links from Raindrop"
+          git push
