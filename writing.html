@@ -65,18 +65,66 @@
             width: 15px;
             height: 15px;
             fill: #8E6A5B;
-            opacity: 0.45;
+            opacity: 0;
             pointer-events: none;
         }
 
-        .ni-1 { top: -16px; left: 2px;              animation: nameFloat 3.2s ease-in-out infinite; }
-        .ni-2 { top: -14px; right: 2px;             animation: nameFloat 4.0s ease-in-out infinite 0.9s; }
-        .ni-3 { bottom: -16px; left: calc(50% - 8px); animation: nameFloat 3.6s ease-in-out infinite 1.6s; }
+        /* Each icon starts hidden at roughly the center of the name text,
+           bursts outward to its resting position, floats, then retreats back. */
+        .ni-1 { top: -16px; left: 2px;                animation: flyOut1 5.2s ease-in-out infinite; }
+        .ni-2 { top: -14px; right: 2px;               animation: flyOut2 5.8s ease-in-out infinite 1.4s; }
+        .ni-3 { bottom: -16px; left: calc(50% - 8px); animation: flyOut3 5.0s ease-in-out infinite 2.7s; }
 
-        @keyframes nameFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            40%       { transform: translateY(-6px) rotate(10deg); }
-            70%       { transform: translateY(-3px) rotate(-6deg); }
+        /* ni-1 is top-left — launches from center-right direction */
+        @keyframes flyOut1 {
+            0%   { transform: translate(52px, 26px) scale(0.1); opacity: 0; }
+            14%  { transform: translate(-4px, -4px)  scale(1.2); opacity: 0.6; }
+            24%  { transform: translate(0,    0)     scale(1);   opacity: 0.45; }
+            64%  { transform: translate(-2px, -5px)  scale(1);   opacity: 0.45; }
+            82%  { transform: translate(32px, 16px)  scale(0.3); opacity: 0.08; }
+            100% { transform: translate(52px, 26px) scale(0.1); opacity: 0; }
+        }
+
+        /* ni-2 is top-right — launches from center-left direction */
+        @keyframes flyOut2 {
+            0%   { transform: translate(-52px, 24px) scale(0.1); opacity: 0; }
+            14%  { transform: translate(4px,  -4px)  scale(1.2); opacity: 0.6; }
+            24%  { transform: translate(0,     0)    scale(1);   opacity: 0.45; }
+            64%  { transform: translate(2px,  -4px)  scale(1);   opacity: 0.45; }
+            82%  { transform: translate(-32px, 15px) scale(0.3); opacity: 0.08; }
+            100% { transform: translate(-52px, 24px) scale(0.1); opacity: 0; }
+        }
+
+        /* ni-3 is bottom-center — launches upward from center */
+        @keyframes flyOut3 {
+            0%   { transform: translate(0, -28px) scale(0.1); opacity: 0; }
+            14%  { transform: translate(0,   3px) scale(1.2); opacity: 0.6; }
+            24%  { transform: translate(0,   0)   scale(1);   opacity: 0.45; }
+            64%  { transform: translate(1px,-3px)  scale(1);   opacity: 0.45; }
+            82%  { transform: translate(0, -18px) scale(0.3); opacity: 0.08; }
+            100% { transform: translate(0, -28px) scale(0.1); opacity: 0; }
+        }
+
+        /* ni-4 is top-center — launches downward from center */
+        .ni-4 { top: -24px; left: calc(50% - 8px); animation: flyOut4 5.4s ease-in-out infinite 0.7s; }
+        @keyframes flyOut4 {
+            0%   { transform: translate(2px, 32px)  scale(0.1); opacity: 0; }
+            14%  { transform: translate(0,  -4px)   scale(1.2); opacity: 0.6; }
+            24%  { transform: translate(0,   0)     scale(1);   opacity: 0.45; }
+            64%  { transform: translate(-2px,-4px)  scale(1);   opacity: 0.45; }
+            82%  { transform: translate(1px, 20px)  scale(0.3); opacity: 0.08; }
+            100% { transform: translate(2px, 32px)  scale(0.1); opacity: 0; }
+        }
+
+        /* ni-5 is bottom-right — launches from center-left */
+        .ni-5 { bottom: -16px; right: 6px; animation: flyOut5 6.0s ease-in-out infinite 3.5s; }
+        @keyframes flyOut5 {
+            0%   { transform: translate(-46px, -20px) scale(0.1); opacity: 0; }
+            14%  { transform: translate(4px,    3px)  scale(1.2); opacity: 0.6; }
+            24%  { transform: translate(0,      0)    scale(1);   opacity: 0.45; }
+            64%  { transform: translate(2px,   -3px)  scale(1);   opacity: 0.45; }
+            82%  { transform: translate(-28px, -13px) scale(0.3); opacity: 0.08; }
+            100% { transform: translate(-46px, -20px) scale(0.1); opacity: 0; }
         }
 
         .nav-link:hover {
@@ -188,6 +236,10 @@
             <svg class="name-icon ni-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M221.28,34.75a64,64,0,0,0-90.49,0L60.69,104A15.9,15.9,0,0,0,56,115.31v73.38L26.34,218.34a8,8,0,0,0,11.32,11.32L67.32,200H140.7A15.92,15.92,0,0,0,152,195.32l0,0,69.23-70A64,64,0,0,0,221.28,34.75ZM142.07,46.06A48,48,0,0,1,211.79,112H155.33l34.35-34.34a8,8,0,0,0-11.32-11.32L120,124.69V67.87ZM72,115.35l32-31.67v57l-32,32ZM140.7,184H83.32l56-56h56.74Z"/></svg>
             <!-- book-open -->
             <svg class="name-icon ni-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M232,48H160a40,40,0,0,0-32,16A40,40,0,0,0,96,48H24a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h72a8,8,0,0,0,8-8V56A8,8,0,0,0,232,48ZM96,192H32V64H96a24,24,0,0,1,24,24V200A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V88a24,24,0,0,1,24-24h64Z"/></svg>
+            <!-- bird -->
+            <svg class="name-icon ni-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M176,68a12,12,0,1,1-12-12A12,12,0,0,1,176,68Zm64,12a8,8,0,0,1-3.56,6.66L216,100.28V120A104.11,104.11,0,0,1,112,224H24a16,16,0,0,1-12.49-26l.1-.12L96,96.63V76.89C96,43.47,122.79,16.16,155.71,16H156a60,60,0,0,1,57.21,41.86l23.23,15.48A8,8,0,0,1,240,80Zm-22.42,0L201.9,69.54a8,8,0,0,1-3.31-4.64A44,44,0,0,0,156,32h-.22C131.64,32.12,112,52.25,112,76.89V99.52a8,8,0,0,1-1.85,5.13L24,208h26.9l70.94-85.12a8,8,0,1,1,12.29,10.24L71.75,208H112a88.1,88.1,0,0,0,88-88V96a8,8,0,0,1,3.56-6.66Z"/></svg>
+            <!-- bread -->
+            <svg class="name-icon ni-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M240,80a40,40,0,0,0-40-40H48a40,40,0,0,0-16,76.65V200a16,16,0,0,0,16,16H200a16,16,0,0,0,16-16V116.65A40.06,40.06,0,0,0,240,80ZM48,120a8,8,0,0,0,0-16,24,24,0,0,1,0-48h96a24,24,0,0,1,0,48,8,8,0,0,0,0,16v80H48Zm152-16a8,8,0,0,0,0,16v80H160V116.65A40,40,0,0,0,176,56h24a24,24,0,0,1,0,48Z"/></svg>
             <a href="index.html"
                 class="font-sans text-magazine-warm-brown tracking-widest uppercase text-base font-semibold nav-link">
                 Divya Sivaram
