@@ -1,6 +1,42 @@
 {
-  "updated": "2026-04-17T07:58:38.468620Z",
+  "updated": "2026-04-17T13:45:18.248150Z",
   "links": [
+    {
+      "title": "Free Lightning Lessons",
+      "url": "https://maven.com/free-lessons",
+      "excerpt": "Live courses with real-world experts in AI, Product, Leadership, Design, Data & engineering, Marketing & sales, and Business & finance.",
+      "tags": [],
+      "domain": "maven.com",
+      "date": "2026-04-17T10:36:30.021Z"
+    },
+    {
+      "title": "Almond Torte",
+      "url": "https://www.yourhomebasedmom.com/almond-torte/",
+      "excerpt": "This Almond Torte has the perfect combination of an inside of sweet, chewy goodness and a topping of\u00a0 sweet, crunchy, almonds.\u00a0\u00a0This torte is perfect as a brunch/breakfast treat or dessert or anytime!",
+      "tags": [],
+      "domain": "yourhomebasedmom.com",
+      "date": "2026-04-17T10:32:26.524Z"
+    },
+    {
+      "title": "2012 in 366 Seconds",
+      "url": "https://vimeo.com/56783189",
+      "excerpt": "Another year done come and went, you guys. In an effort to document my year, I filmed one second of everyday for the whole year, a sort of different approach to\u2026",
+      "tags": [
+        "inspiration"
+      ],
+      "domain": "vimeo.com",
+      "date": "2026-03-19T05:06:01.314Z"
+    },
+    {
+      "title": "Design Spells \u00b7 Design details that feel like magic",
+      "url": "https://www.designspells.com/?ref=chester",
+      "excerpt": "Discover micro-interactions, easter eggs, and other seemingly extra design details that infuse life, personality, and fun back into the web.",
+      "tags": [
+        "inspiration"
+      ],
+      "domain": "designspells.com",
+      "date": "2026-03-19T05:04:15.629Z"
+    },
     {
       "title": "LLMs can get brainrot - paper",
       "url": "https://arxiv.org/pdf/2510.13928",
