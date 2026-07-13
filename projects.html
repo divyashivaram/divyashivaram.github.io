@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Divya Shivaram</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'magazine': {
+                            'peach-pink': '#E5B4A5',
+                            'coral': '#E87A5E',
+                            'cream': '#F5F1EB',
+                            'warm-brown': '#8E6A5B',
+                            'sage': '#A0B4A6'
+                        }
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #E5B4A5;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgMzAwIj48ZmlsdGVyIGlkPSJuIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC45IiBudW1PY3RhdmVzPSIzIiBzdGl0Y2hUaWxlcz0ic3RpdGNoIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsdGVyPSJ1cmwoI24pIi8+PC9zdmc+');
+            opacity: 0.1;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+            color: #8E6A5B;
+        }
+
+        .nav-link:hover {
+            color: #E87A5E;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+        .project-card {
+            display: block;
+            background-color: rgba(245, 241, 235, 0.9);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1.5px solid transparent;
+        }
+
+        .project-card:hover {
+            border-color: #E87A5E;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(142, 106, 91, 0.18);
+        }
+
+        .project-card:hover .project-arrow {
+            transform: translateX(4px);
+        }
+
+        .project-arrow {
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .project-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            color: #E87A5E;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body class="bg-magazine-peach-pink font-sans antialiased">
+
+    <!-- Header with Name -->
+    <header class="absolute top-6 left-6 z-20">
+        <a href="index.html"
+            class="font-sans text-magazine-warm-brown tracking-widest uppercase text-sm font-semibold nav-link">
+            Divya Sivaram
+        </a>
+    </header>
+
+    <main class="min-h-screen flex flex-col items-center justify-center px-6 py-24">
+        <div class="w-full max-w-2xl">
+
+            <!-- Page Heading -->
+            <div class="text-center mb-12">
+                <p class="font-sans text-magazine-warm-brown text-sm tracking-[0.3em] uppercase font-semibold mb-3">
+                    Projects
+                </p>
+                <h1 class="font-serif text-4xl md:text-5xl text-magazine-coral mb-4">
+                    things I build for fun
+                </h1>
+                <p class="text-magazine-warm-brown text-base md:text-lg leading-relaxed max-w-md mx-auto">
+                    A growing collection of little experiments — built to scratch an itch, learn something new, or
+                    just because it sounded fun.
+                </p>
+            </div>
+
+            <!-- Project Cards -->
+            <div class="space-y-6 mb-12">
+
+                <a href="/photofilm/" class="project-card">
+                    <span class="project-number">No. 01</span>
+                    <h2 class="font-serif text-2xl md:text-3xl text-magazine-coral mt-1 mb-3">
+                        photofilm
+                    </h2>
+                    <p class="text-magazine-warm-brown text-base leading-relaxed mb-4">
+                        A photo editor that applies Fujifilm-inspired film simulations to your photos. Hand-tuned
+                        presets, right in your browser.
+                    </p>
+                    <span class="text-magazine-coral text-sm font-medium">
+                        Try it <span class="project-arrow">→</span>
+                    </span>
+                </a>
+
+                <a href="/jutsu/" class="project-card">
+                    <span class="project-number">No. 02</span>
+                    <h2 class="font-serif text-2xl md:text-3xl text-magazine-coral mt-1 mb-3">
+                        jutsu
+                    </h2>
+                    <p class="text-magazine-warm-brown text-base leading-relaxed mb-4">
+                        A Naruto hand-seal trainer — practice your jutsu with real-time hand tracking, right from
+                        your webcam.
+                    </p>
+                    <span class="text-magazine-coral text-sm font-medium">
+                        Try it <span class="project-arrow">→</span>
+                    </span>
+                </a>
+
+            </div>
+
+            <!-- More links -->
+            <div class="text-center text-magazine-warm-brown text-base leading-relaxed">
+                <p class="mb-2">
+                    More experiments live on
+                    <a href="https://github.com/divyashivaram" target="_blank" rel="noopener noreferrer"
+                        class="nav-link underline">GitHub</a>.
+                </p>
+                <p>
+                    The serious stuff happens at
+                    <a href="https://kerneltheory.com" target="_blank" rel="noopener noreferrer"
+                        class="nav-link underline">Kernel Theory</a>.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="absolute bottom-6 right-6 z-20">
+        <nav class="flex flex-wrap items-center justify-end text-sm space-x-3 text-magazine-warm-brown">
+            <a href="index.html" class="nav-link">← Home</a>
+            <span class="opacity-50">|</span>
+            <a href="about.html" class="nav-link">About me</a>
+            <span class="opacity-50">|</span>
+            <a href="digital-garden.html" class="nav-link">Digital Garden</a>
+            <span class="opacity-50">|</span>
+            <a href="resume.html" class="nav-link">Resume</a>
+        </nav>
+    </footer>
+
+</body>
+
+</html>
