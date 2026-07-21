@@ -528,6 +528,49 @@
 </head>
 
 <body class="bg-magazine-peach-pink font-sans antialiased">
+    <!-- Mobile hamburger nav -->
+    <style>
+        #menuBtn span { transition: all .3s ease; }
+        #menuBtn.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        #menuBtn.is-open span:nth-child(2) { opacity: 0; }
+        #menuBtn.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    </style>
+    <div class="md:hidden">
+        <button id="menuBtn" aria-label="Open menu" aria-expanded="false"
+            class="fixed top-5 right-5 z-50 flex flex-col justify-center gap-1.5 p-2">
+            <span class="block w-6 h-0.5 bg-magazine-warm-brown"></span>
+            <span class="block w-6 h-0.5 bg-magazine-warm-brown"></span>
+            <span class="block w-6 h-0.5 bg-magazine-warm-brown"></span>
+        </button>
+        <nav id="mobileMenu"
+            class="hidden fixed inset-0 z-40 bg-magazine-cream/95 backdrop-blur-sm flex-col items-center justify-center gap-8 text-xl tracking-wide text-magazine-warm-brown">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About me</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="digital-garden.html" class="nav-link">Digital Garden</a>
+            <a href="resume.html" class="nav-link">Resume</a>
+        </nav>
+    </div>
+    <script>
+        (function () {
+            var btn = document.getElementById('menuBtn');
+            var menu = document.getElementById('mobileMenu');
+            function close() {
+                menu.classList.add('hidden'); menu.classList.remove('flex');
+                btn.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('overflow-hidden');
+            }
+            btn.addEventListener('click', function () {
+                var open = menu.classList.toggle('hidden') === false;
+                menu.classList.toggle('flex', open);
+                btn.classList.toggle('is-open', open);
+                btn.setAttribute('aria-expanded', String(open));
+                document.body.classList.toggle('overflow-hidden', open);
+            });
+            menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+        })();
+    </script>
+
 
         <header class="text-center pt-8 pb-4">
                 <div class="name-wrap">
@@ -891,7 +934,7 @@
         </script>
 
         <footer class="text-center py-12">
-                <nav class="flex flex-wrap items-center justify-center text-sm space-x-3 text-magazine-warm-brown">
+                <nav class="flex flex-wrap items-center max-md:hidden justify-center text-sm space-x-3 text-magazine-warm-brown">
                         <a href="index.html" class="nav-link">← Home</a>
                         <span class="opacity-50">|</span>
                         <a href="about.html" class="nav-link">About me</a>
