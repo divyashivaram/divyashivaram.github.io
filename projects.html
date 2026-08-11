@@ -66,7 +66,9 @@
         }
 
         .project-card {
-            display: block;
+            display: flex;
+            flex-direction: column;
+            aspect-ratio: 1 / 1;
             background-color: rgba(245, 241, 235, 0.9);
             border-radius: 8px;
             padding: 2rem;
@@ -89,12 +91,8 @@
             display: inline-block;
         }
 
-        .project-number {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.85rem;
-            letter-spacing: 0.2em;
-            color: #E87A5E;
-            opacity: 0.8;
+        .project-cta {
+            margin-top: auto;
         }
     </style>
 </head>
@@ -153,7 +151,7 @@
     </header>
 
     <main class="min-h-screen flex flex-col items-center justify-center px-6 py-24">
-        <div class="w-full max-w-2xl">
+        <div class="w-full max-w-5xl">
 
             <!-- Page Heading -->
             <div class="text-center mb-12">
@@ -170,33 +168,44 @@
             </div>
 
             <!-- Project Cards -->
-            <div class="space-y-6 mb-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-12">
 
                 <a href="/photofilm/" class="project-card">
-                    <span class="project-number">No. 01</span>
-                    <h2 class="font-serif text-2xl md:text-3xl text-magazine-coral mt-1 mb-3">
+                    <h2 class="font-serif text-2xl md:text-3xl text-magazine-coral mb-3">
                         photofilm
                     </h2>
-                    <p class="text-magazine-warm-brown text-base leading-relaxed mb-4">
+                    <p class="text-magazine-warm-brown text-base leading-relaxed">
                         A photo editor that applies Fujifilm-inspired film simulations to your photos. Hand-tuned
                         presets, right in your browser.
                     </p>
-                    <span class="text-magazine-coral text-sm font-medium">
+                    <span class="project-cta pt-4 text-magazine-coral text-sm font-medium">
                         Try it <span class="project-arrow">→</span>
                     </span>
                 </a>
 
                 <a href="/jutsu/" class="project-card">
-                    <span class="project-number">No. 02</span>
-                    <h2 class="font-serif text-2xl md:text-3xl text-magazine-coral mt-1 mb-3">
+                    <h2 class="font-serif text-2xl md:text-3xl text-magazine-coral mb-3">
                         jutsu
                     </h2>
-                    <p class="text-magazine-warm-brown text-base leading-relaxed mb-4">
+                    <p class="text-magazine-warm-brown text-base leading-relaxed">
                         A Naruto hand-seal trainer — practice your jutsu with real-time hand tracking, right from
                         your webcam.
                     </p>
-                    <span class="text-magazine-coral text-sm font-medium">
+                    <span class="project-cta pt-4 text-magazine-coral text-sm font-medium">
                         Try it <span class="project-arrow">→</span>
+                    </span>
+                </a>
+
+                <a href="/rainbowfm/" class="project-card">
+                    <h2 class="font-serif text-2xl md:text-3xl text-magazine-coral mb-3">
+                        rainbow fm
+                    </h2>
+                    <p class="text-magazine-warm-brown text-base leading-relaxed">
+                        A tribute to the English hour on Rainbow FM 101.4 — a cassette deck that spins its reels
+                        while it plays the songs Chennai grew up taping.
+                    </p>
+                    <span class="project-cta pt-4 text-magazine-coral text-sm font-medium">
+                        Listen <span class="project-arrow">→</span>
                     </span>
                 </a>
 
@@ -232,6 +241,8 @@
         </nav>
     </footer>
 
+    <!-- GoatCounter analytics -->
+    <script data-goatcounter="https://divyashivaram.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </body>
 
 </html>
